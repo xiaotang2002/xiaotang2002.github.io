@@ -1,0 +1,290 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<body background="img/background1.jpg">
+		<meta charset="utf-8">
+		<title>疾病预防小知识</title>
+		<strong style="color:red">
+			<center><p><font size="10" color="red"font face="华文楷体">疾病预防小知识</font></p></center>
+			</strong>
+		<p align="right" style="color:red">---新冠疫情下的疾病防控</p>
+		<hr color="green">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		</head>   
+	
+	<body>
+		<style>
+		    * 
+			{
+		        margin: 0;
+		        padding: 0;
+		    }
+		    .box 
+			{
+		        width: 700px;
+		        height: 500px;
+		        border: 1px solid #ccc;
+		        margin: 50px auto;
+		        padding: 1px;
+		    }
+		    .inner
+			{
+		        width: 700px;
+		        height: 500px;
+		        position: relative;
+		        overflow: hidden;
+		    }
+		    .inner img
+			{
+		        width: 700px;
+		        height: 500px;
+		        vertical-align: top
+		    }
+		    ul 
+			{
+		        width: 1000%;
+		        position: absolute;
+		        list-style: none;
+		        left:0;
+		        top: 0;
+		    }
+		    .inner li
+			{
+		        float: left;
+				 
+		    }
+				 
+		    ol 
+			{
+		        position: absolute;
+		        height: 20px;
+		        right: 20px;
+		        bottom: 20px;
+		        text-align: center;
+		        padding: 5px;
+		    }
+		    ol li
+			{
+		        display: inline-block;
+		        width: 20px;
+		        height: 20px;
+		        line-height: 15px;
+		        background-color: #fff;
+		        margin: 10px;
+		        cursor: pointer;
+				 
+		    }
+		    ol .current
+			{
+		        background-color: #CCCCCC;
+		    }
+		    #arr
+			{
+		        display: none;
+		    }
+		    #arr 
+			{
+		        width: 50px;
+		        height: 50px;
+		        position: absolute;
+		        left: 5px;
+		        top: 50%;
+		        margin-top: -20px;
+		        background: #fff;
+		        cursor: pointer;
+		        line-height: 40px;
+		        text-align: center;
+		        font-weight: bold;
+		        font-family: '黑体';
+		        font-size: 30px;
+		        color: #000;
+		        opacity: 0.5;
+		        border: 1px solid #fff;
+		    }
+		    #arr #right 
+			{
+		        right: 5px;
+		        left: auto;
+		    }
+			m
+			{
+				color: crimson;
+				font-size: 40px;
+				text-align: center;
+			}
+			n
+			{
+				color: #CCCCCC;
+			}
+			nav
+			{
+				padding:2em;
+				height: 8em;
+				line-height: 2em;
+				background-color: #8787ca;
+				font-weight: bold;
+				font-family: '微软雅黑';
+				width:90%;
+				margin:50px 0px 50px 50px;
+				border:5px solid #7e7ebc;
+			}
+			h2
+			{
+				margin-top: 30px;
+				margin-bottom: 30px;
+			}
+			p
+			{
+				margin-bottom: 15px;
+			}
+		</style>
+		<nav>
+			<m><p>目录</p></m>
+			<n><li><a href="#1">一、概述:疾病预防的重要性</a></li>
+			<li><a href="#2">二、如何防控？</a></li>
+			<li><a href="#3">三、要怎么样对待疫情？</a></li>
+			</n></nav>
+		<div class="box" id="box">
+		    <div class="inner">
+		        <ul>
+		            <li><a href="#"><img src="img/a1.jpg" alt=""></a></li>
+		            <li><a href="#"><img src="img/a2.jpg" alt=""></a></li>
+		            <li><a href="#"><img src="img/a3.jpg" alt=""></a></li>
+		            <li><a href="#"><img src="img/a4.jpg" alt=""></a></li>
+		            <li><a href="#"><img src="img/a5.jpg" alt=""></a></li>
+		        </ul>
+		        <ol class="bar">
+		        </ol>
+		        <div id="arr">
+		                    <span id="left">
+		                        <
+		                    </span>
+		            <span id="right">
+		                        >
+		                    </span>
+		        </div>
+		    </div>
+		</div>
+		<script>
+		    function my$(id) {
+		        return document.getElementById(id);
+		    }
+		    var box=my$("box");
+		    var inner=box.children[0];
+		    var ulObj=inner.children[0];
+		    var list=ulObj.children;
+		    var olObj=inner.children[1];
+		    var arr=my$("arr");
+		    var imgWidth=inner.offsetWidth;
+		    var right=my$("right");
+		    var pic=0;
+		    for(var i=0;i<list.length;i++){
+		        var liObj=document.createElement("li");
+		        olObj.appendChild(liObj);
+		        liObj.innerText=(i+1);
+		        liObj.setAttribute("index",i);
+		        liObj.onmouseover=function () {
+		            for (var j=0;j<olObj.children.length;j++){
+		                olObj.children[j].removeAttribute("class");
+		            }
+		            this.className="current";
+		            pic=this.getAttribute("index");
+		            animate(ulObj,-pic*imgWidth);
+		        }
+		    }
+		    olObj.children[0].className = "current";
+		    ulObj.appendChild(ulObj.children[0].cloneNode(true));
+		    var timeId=setInterval(onmouseclickHandle,2000);
+		    box.onmouseover=function () {
+		        arr.style.display="block";
+		        clearInterval(timeId);
+		    };
+		    box.onmouseout=function () {
+		        arr.style.display="none";
+		        timeId=setInterval(onmouseclickHandle,2000);
+		    };
+		    right.onclick=onmouseclickHandle;
+		    function onmouseclickHandle() {
+		        if (pic == list.length - 1) {
+		            pic = 0;
+		            ulObj.style.left = 0 + "px";
+		        }
+		        pic++;
+		        animate(ulObj, -pic * imgWidth);
+		        if (pic == list.length - 1) {
+		            olObj.children[olObj.children.length - 1].className = "";
+		            olObj.children[0].className = "current";
+		        } else {
+		            for (var i = 0; i < olObj.children.length; i++) {
+		                olObj.children[i].removeAttribute("class");
+		            }
+		            olObj.children[pic].className = "current";
+		        }
+		    }
+		    left.onclick=function () {
+		        if (pic==0){
+		            pic=list.length-1;
+		            ulObj.style.left=-pic*imgWidth+"px";
+		        }
+		        pic--;
+		        animate(ulObj,-pic*imgWidth);
+		        for (var i = 0; i < olObj.children.length; i++) {
+		            olObj.children[i].removeAttribute("class");
+		        }
+		        olObj.children[pic].className = "current";
+		    };
+		    function animate(element, target) {
+		        clearInterval(element.timeId);
+		        element.timeId = setInterval(function () {
+		            var current = element.offsetLeft;
+		            var step = 10;
+		            step = current < target ? step : -step;
+		            current += step;
+		            if (Math.abs(current - target) > Math.abs(step)) {
+		                element.style.left = current + "px";
+		            } else {
+		                clearInterval(element.timeId);
+		                element.style.left = target + "px";
+		            }
+		        }, 10);
+		    }
+		</script>
+		
+		
+			
+		<a id="1"><h2>一、概述:疾病预防的重要性</h2></a>
+		   
+		<p style="text-indent:2em;">发达国家的经验和教训告诉我们，要想以最少的投入换取最大的人群健康，只有预防能做到｡以美国为例，在20世纪前50年，美国政府由于片面强调治疗照顾而忽视了预防，50年间政府的卫生经费增加了10倍，但国民的健康并没有得到预期的改善｡1979年美国卫生福利部在《健康人民》一书中提出:“如果一个国家想要增进国民的健康，最重要的工作是集中医疗和社会资源，投注在疾病预防上面｡”</p>
+		
+		<div align="center">
+		<img src="img/1.jpg"/width="500" height="400">
+		</div>
+		
+		<a id="2"><h2>二、如何防控？</h2></a>
+
+		<p style="text-indent:2em;">1️⃣众所周知，新冠状病毒主要通过飞沫传播和接触传播，因此只要我们主要防范这两种传播方式，就不必慌张了。
+		<p style="text-indent:2em;">2️⃣首先，出门戴口罩，避免不必要的出门，假如出门，在外面时，避免人多的地方，和他人保持一个安全的距离，在外面不要随便把口罩摘下来，打喷嚏时要用纸巾捂住口鼻，用完的纸巾不要随便乱丢，回来时，先把口罩处理最好用塑料袋包裹，投入有害垃圾的垃圾桶。然后洗手，如果不放心可以用消毒水和75%酒精消毒房间。注意，酒精易燃，使用时要注意安全。
+		<p style="text-indent:2em;">3️⃣如果在家不出门，大可不必总是消毒房间，保持干净整洁经常通风即可。经常洗手，适当的做做运动，不熬夜，注意营养均衡，增强免疫力。
+		<p style="text-indent:2em;">4️⃣疫情期间，不要随意走动，即使是多年未见的朋友，或是亲戚，也不要随意走动，遵守各地的规定，理解体谅防疫人员。相信，疫情很快就会结束，到时再出门。
+		
+		<div align="center">
+		<img src="img/2.jpg"/width="500" height="400">
+		</div>
+		
+		<a id="3"><h2>三、要怎么样对待疫情？</h2></a>
+		   
+		<p style="text-indent:2em;">1️⃣首先，我们对待疫情不应该恐慌。所有医务人员都在一线奋战，我们就应该贡献自己的力量，要不就宅在家陪同家人，要不就能上班的就上班付出，要不就有钱的出钱，有力的出力。有的单位在募捐，能尽一份力就尽力。各个社区也在招募志愿者，戴好防护用具在小区门口查岗。我相信只要我们团结一心，共同抗战，没有战胜不了的困难。况且这个困难只是暂时的。相对于非洲当时的埃博拉病毒的致死率40%多，我们经历的还算什么。整个国家都在奋战，我们作为国家的一分子，首当其冲就应该认真对待此次疫情，把自己分内事管理好，不给国家添乱。恐慌不可取
+		<p style="text-indent:2em;">2️⃣其次，针对于那些满不在乎的，确实该审视一下自己。当然得认清自己所处的形势，如果自己没有处在疫情区，在公共场合也应该戴口罩，就算是现在口罩非常紧缺，戴一个棉口罩也是对别人的一个尊重，不要自以为是。如果确实处于疫区，那只要出门就要戴，首先是为了自己的健康。像现在网上的信息，有的人会在电梯按键处吐痰，有的人会往门把手上吐痰，还有的人会为了自己一己之欲阻碍志愿者检查。这些都是极少数，而且这种变态的报复心理现在来说会触犯法律。因此我们要做一个正直的人，一个能够为社会做点贡献的人。而不是一味地沉浸在自己世界里的魔鬼。
+		<p style="text-indent:2em;">3️⃣综上所述，对待新型肺炎，我们应该正视它，了解它，预防它，驱走它。虽然现在网络如此发达，各种信息包括正面的、负面的夹杂而来，但是我们应该相信科技，相信专家，更应该相信国家，最后相信我们自己。我们一定能迅速战胜疫情，回归到我们正常生活中来。
+		
+		<div align="center">
+		<img src="img/3.jpg"/width="500" height="400">
+		</div>
+		
+		<center><video controls="0" autoplay="1" name="mp3"><source src="music/zzcc.mp3" ></video></center>
+		<center>Designed By Tang</a></center>
+	</body>
+</html>
